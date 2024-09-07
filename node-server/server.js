@@ -23,7 +23,7 @@ app.use('/chatify', chatifyRoutes)
 
 const port = process.env.PORT || 2000
 
-app.listen(port,() => {
+server.listen(port,() => {
     console.log(`Listening to the port ${port}`)
 })
 
