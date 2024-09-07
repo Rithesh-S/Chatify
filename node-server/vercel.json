@@ -7,9 +7,6 @@
     }
   ],
   "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/"
-    }
+      { "src": "/chatify/(.*)", "dest": "/chatify/$1" }
   ]
 }
