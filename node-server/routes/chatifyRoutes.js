@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
-const chatifyController = require('../controllers/chatifycontroller')
-const userController = require('../controllers/usercontroller')
+const chatifyController = require('../controllers/chatifyController')
+const userController = require('../controllers/userController')
 const authController = require('../controllers/authController')
 
 router.post('/signup', userController.signup)
