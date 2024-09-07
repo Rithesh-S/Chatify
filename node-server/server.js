@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require('express')
 const cors = require('cors')
+const http = require('http');
 const chatifyRoutes = require('./routes/chatifyRoutes')
 const socket = require('./controllers/socket')
 
@@ -14,8 +15,9 @@ const app = express()
 app.use(express.json())
 app.use(cors(corsOptions))
 
-const socketport = process.env.SOCKET_PORT || 1601
-socket.initializeSocket(socketport)
+const server = http.createServer(app)
+
+socket.initializeSocket(server)
 
 app.use('/chatify', chatifyRoutes)
 
