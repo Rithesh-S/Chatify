@@ -4,7 +4,7 @@ const { addMessage , receiveMessage } = require('./chatifyController')
 function initializeSocket(server) {
     const io = socketIo(server, {
         cors: {
-            origin: 'https://chatify-5zrh0s5h5-rithesh-ss-projects.vercel.app/',
+            origin: '*',
             methods: ['GET', 'POST', 'PUT', 'DELETE']
         }
     })
