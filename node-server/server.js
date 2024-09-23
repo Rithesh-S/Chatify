@@ -6,7 +6,7 @@ const chatifyRoutes = require('./routes/chatifyRoutes')
 const socket = require('./controllers/socket')
 
 const corsOptions = {
-    origin: 'https://chatify-5zrh0s5h5-rithesh-ss-projects.vercel.app/',
+    origin: '*',
     methods: ['GET', 'POST', 'PUT', 'DELETE' ],
 }
 
