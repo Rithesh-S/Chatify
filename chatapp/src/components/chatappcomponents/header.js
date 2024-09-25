@@ -9,37 +9,36 @@ function Header(arg) {
         const [datePart, timePart] = dateString.split(' ');
         const [year, month, day] = datePart.split('-').map(num => parseInt(num, 10));
         const [hour, minute, second] = timePart.split(':').map(num => parseInt(num, 10));
-        
+    
         const utcDate = new Date(Date.UTC(year, month - 1, day, hour, minute, second));
+        
         const istOffset = 5.5 * 60 * 60 * 1000;
         const istDate = new Date(utcDate.getTime() + istOffset);
-    
+        
         let hours = istDate.getHours();
         const minutes = istDate.getMinutes();
-        const days = istDate.getDate();
-        const months = istDate.getMonth();
-        const years = istDate.getFullYear();
         const period = hours >= 12 ? 'PM' : 'AM';
+    
+        hours = hours % 12;
+        hours = hours ? hours : 12; 
+        
+        const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
     
         const nowDate = new Date();
         const nowUtcTime = nowDate.getTime() + (nowDate.getTimezoneOffset() * 60000);
         const nowIstDate = new Date(nowUtcTime + istOffset);
-    
+        
         const nowDay = nowIstDate.getDate();
-        const nowMonth = nowIstDate.getMonth();
+        const nowMonth = nowIstDate.getMonth() + 1; 
         const nowYear = nowIstDate.getFullYear();
     
-        hours = hours % 12;
-        hours = hours ? hours : 12;
-    
-        const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
-        
-        if (nowDay > days || nowMonth > months || nowYear > years) {
-            return `${days}/${months + 1}/${years}`;
+        if (nowDay > day || nowMonth > month || nowYear > year) {
+            return `${day}/${month}/${year}`; 
         }
         
         return `${hours}:${formattedMinutes} ${period}`;
     }
+    
     const [selectedChatName,setSelectedChatName] = useState()
     const [selectedChatStatus,setSelectedChatStatus] = useState()
     const [selectedChatLastSeen,setSelectedChatLastSeen] = useState()
