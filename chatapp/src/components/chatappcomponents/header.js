@@ -6,33 +6,40 @@ function Header(arg) {
     const [isTouchedBack, setIsTouchedBack] = useState(false)
 
     function formatTo12Hour(dateString) {
-
-        const [datePart, timePart] = dateString.split(' ')
-        const [year, month, day] = datePart.split('-').map(num => parseInt(num, 10))
-        const [hour, minute, second] = timePart.split(':').map(num => parseInt(num, 10))
+        const [datePart, timePart] = dateString.split(' ');
+        const [year, month, day] = datePart.split('-').map(num => parseInt(num, 10));
+        const [hour, minute, second] = timePart.split(':').map(num => parseInt(num, 10));
+        
+        const utcDate = new Date(Date.UTC(year, month - 1, day, hour, minute, second));
+        const istOffset = 5.5 * 60 * 60 * 1000;
+        const istDate = new Date(utcDate.getTime() + istOffset);
     
-        const date = new Date(year, month-1, day, hour, minute, second)
-        let hours = date.getHours()
-        const minutes = date.getMinutes()
-        const days = date.getDate()
-        const months = date.getMonth()
-        const years = date.getFullYear()
-        const period = hours >= 12 ? 'PM' : 'AM'
-
-        const nowDate = new Date()
-        const nowDay = nowDate.getDate()
-        const nowMonth = nowDate.getMonth()
-        const nowYear = nowDate.getFullYear()
+        let hours = istDate.getHours();
+        const minutes = istDate.getMinutes();
+        const days = istDate.getDate();
+        const months = istDate.getMonth();
+        const years = istDate.getFullYear();
+        const period = hours >= 12 ? 'PM' : 'AM';
     
-        hours = hours % 12
-        hours = hours ? hours : 12
+        const nowDate = new Date();
+        const nowUtcTime = nowDate.getTime() + (nowDate.getTimezoneOffset() * 60000);
+        const nowIstDate = new Date(nowUtcTime + istOffset);
     
-        const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes
-        if(nowDay > days || nowMonth > months || nowYear > years)
-            return `${days}/${months+1}/${years}`
-        return `${hours}:${formattedMinutes} ${period}`
+        const nowDay = nowIstDate.getDate();
+        const nowMonth = nowIstDate.getMonth();
+        const nowYear = nowIstDate.getFullYear();
+    
+        hours = hours % 12;
+        hours = hours ? hours : 12;
+    
+        const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
+        
+        if (nowDay > days || nowMonth > months || nowYear > years) {
+            return `${days}/${months + 1}/${years}`;
+        }
+        
+        return `${hours}:${formattedMinutes} ${period}`;
     }
-
     const [selectedChatName,setSelectedChatName] = useState()
     const [selectedChatStatus,setSelectedChatStatus] = useState()
     const [selectedChatLastSeen,setSelectedChatLastSeen] = useState()
