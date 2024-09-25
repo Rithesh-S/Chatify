@@ -102,7 +102,7 @@ function Login(args)
         <>
         <section className='h-dvh flex bg-[#fdfaf2] justify-center items-center' style={{ height: `${height}px` }}>
             <div className={`z-50 fixed px-6 right-5 top-7 h-20 rounded-xl shadow-lg flex ${ ( !successMessage && !auth ) && 'hidden' } ${ auth ? 'bg-red-100' : 'bg-green-100' }`}>
-                <p className={`m-auto text-xl ${ auth ? 'text-red-700' : 'text-emerald-700'}`}>{auth ? "Unauthorized" :"Login Successfully!"}</p>
+                <p className={`m-auto text-xl ${ auth ? 'text-red-700' : 'text-emerald-700'}`}>{auth ? "Unauthorized" :"Login Successful!"}</p>
             </div>
             <div className='h-full w-full sm:h-4/6 sm:w-4/6 border-none sm:rounded-xl sm:grid sm:grid-cols-2 sm:shadow-lg'>
                 <div className='bg-slate-100 hidden rounded-l-xl sm:flex justify-evenly flex-col text-center bg-gradient-to-br from-[#ffaf00] to-[#0024bf]'>
