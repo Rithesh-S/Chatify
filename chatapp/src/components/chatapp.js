@@ -221,7 +221,7 @@ function ChatApp(args) {
                     </div>
                   </>
                   : 
-                  <div className='h-dvh flex flex-col' style={{ height: `${height}px` }}>
+                  <div className='h-dvh flex flex-col flex-1' style={{ height: `${height}px` }}>
                     <Header users={users} selectedChat={selectedChat} setSelectedChat={setSelectedChat} activity={activity}/>
                     <ChatArea conversation={conversation} chatId={chatId} userId={userId}/>
                     <MessageBox sendMessage={sendMessage} setHeight={setHeight} />
