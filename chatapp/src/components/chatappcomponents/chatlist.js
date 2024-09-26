@@ -36,7 +36,7 @@ function ChatList(arg) {
 
     return(
         <>
-        <div className='flex flex-col cursor-pointer'>
+        <div className='flex flex-col cursor-pointer flex-1'>
             {filteredNames?.map((val,i) => { return(
             <div key={i} className={`flex border-b border-[#4f3d75] shadow-sm justify-start justify-items-center space-x-4 p-4 h-20 ${ arg.selectedChat === val.userid ?'bg-[#706192] ' : ''}`} onClick={() => {arg.setSelectedChat(val.userid); checkStatus(val.userid)}}>
                 <div className='size-12 rounded-full flex justify-center items-center bg-zinc-400'>
