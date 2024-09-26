@@ -177,10 +177,10 @@ function ChatApp(args) {
       }, []);
           
     return (
-        <>
+       <>
             <UserAddDialogueBox userId={userId} addUserBox={addUserBox} setAddUserBox={setAddUserBox} users={users} getUsers={getUsers} baseUri={args.baseUri}/>
-            <section className='h-dvh bg-[#4f3d75] md:flex' style={{ height: `${height}px` }}>
-              <div className='hidden md:block py-4 flex-none'>
+            <section className='h-dvh bg-[#4f3d75] flex' style={{ height: `${height}px` }}>
+              <div className='hidden md:flex md:flex-col py-4'>
                 <div className='px-2 pl-4 flex'>
                   <SearchBar getSearchName={getSearchName}/>
                   <div className={`px-3 ml-2 rounded-lg ${isTouchedAdd && ('bg-[#69696956]')}`} onTouchStart={() => setIsTouchedAdd(true)} onTouchEnd={() => setIsTouchedAdd(false)} onClick={() => setAddUserBox(true)}>
@@ -191,10 +191,9 @@ function ChatApp(args) {
                   <ChatList userId={userId} addUserBox={addUserBox} users={users} getUsers={getUsers} selectedChat={selectedChat} setSelectedChat={setSelectedChat} getChatId={getChatId} searchName={searchName} baseUri={args.baseUri}/>
                 </div> 
               </div>
-              <div className='flex flex-col flex-1'>
                 { selectedChat === null ?
                   <>
-                    <div className='md:hidden'>
+                    <div className='md:hidden flex flex-col flex-1'>
                       <div className='flex justify-between p-2'>
                         <p className='text-[#f0f0f0] text-2xl p-1 pl-2'>Chatify</p>
                         <div className={`rounded-lg pl-2 pr-1 ${isTouchedLog && ('bg-[#69696956]')}`} onTouchStart={() => setIsTouchedLog(true)} onTouchEnd={() => setIsTouchedLog(false)} onClick={() => navigate('/chatify/login')}>
@@ -207,7 +206,7 @@ function ChatApp(args) {
                           <span className="material-symbols-outlined text-[#f0f0f0] text-3xl py-1">person_add</span>
                         </div>
                       </div>
-                      <div className='flex-1 mt-6 bg-[#625284] flex flex-col overflow-y-auto scrollbar-none'>
+                      <div className='flex-1 mt-6 bg-[#625284] flex flex-col overflow-y-scroll scrollbar-none'>
                         <ChatList userId={userId} addUserBox={addUserBox} users={users} getUsers={getUsers} selectedChat={selectedChat} setSelectedChat={setSelectedChat} getChatId={getChatId} searchName={searchName} baseUri={args.baseUri}/>
                       </div> 
                     </div> 
@@ -228,7 +227,6 @@ function ChatApp(args) {
                     <MessageBox sendMessage={sendMessage} setHeight={setHeight} />
                   </div>
                 }
-              </div>
             </section>
         </>
     )
