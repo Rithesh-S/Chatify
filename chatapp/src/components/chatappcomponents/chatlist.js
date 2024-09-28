@@ -20,7 +20,7 @@ function ChatList(arg) {
             .catch((err) => console.error(err))
         }
         ChatUserList()
-    },[arg.addUserBox,arg.baseUri])
+    },[arg.addUserBox])
 
     useEffect(() => { 
         const filteredNames = arg.users?.filter((name => 
